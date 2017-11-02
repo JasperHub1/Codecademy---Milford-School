@@ -10,8 +10,5 @@ $(document).ready(() => {
 		if (passwordValue == "") {
 			$('.password-error').html("Please enter your password.");
 		}
-
 	})
-
-
 })
