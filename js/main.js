@@ -4,43 +4,24 @@ $(document).ready(() => {
     $(event.currentTarget).toggleClass('active');
   })
   $('.glyphicon-remove').on('click', event => {
-    $(event.currentTarget).parent().addClass('hide');
+    $(event.currentTarget).parent().remove();
   })
+
+
+  // use event.preventDefault to disable type="submit" auto refreshing page which will delete any added contents
+  // or change type=submit to button
+  // issue of above two method is the placeholder will not be refreshed to default, so added $('#toDo').val("");
+
+  $('#addBtn').on('click', event => {
+  	event.preventDefault()
+  	// var text = document.getElementById('toDo').value;
+  	var text = $('#toDo').val();
+  	var html = '<p><input type="checkbox"><i class="glyphicon glyphicon-star"></i><span>' + text + '</span><i class="glyphicon glyphicon-remove"></i></p>';
+  	if (text !== "") {
+  		$(".list").append(html);
+  		$('#toDo').val("");
+  	}
+  });
+
+
 })
-
-
-// var template = function(text) {
-//   return '<p><input type="checkbox"><i class="glyphicon glyphicon-star"></i><span>' + text + '</span><i class="glyphicon glyphicon-remove"></i></p>';
-// };
-
-// var main = function() {
-//   $('form').submit(function() {
-//     var text = $("#todo"); 
-//     if(text.val() !== "") {
-//       var html = template(text.val());
-//       $(html).appendTo(".list");  
-//       $(text).val("");
-//     }     
-//     return false;  
-//   });
-  
-// $(document).on("click", ".glyphicon-star", function() {
-//   $(this).toggleClass("active");
-// });
-// $(document).on("click", ".glyphicon-remove", function() {
-//   $(this).parent().remove();
-// });
-
-
-// var add = function(item) {
-//   var html = template(item); 
-//   $(html).appendTo('.list'); 
-// }; 
- 
-//   if (annyang) {
-//     var commands = {'add *item': add, }; 
-//     annyang.addCommands(commands); 
-//     annyang.start(); } 
-// }; 
-
-// $(document).ready(main);
